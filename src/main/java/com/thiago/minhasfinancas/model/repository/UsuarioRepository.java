@@ -3,11 +3,6 @@ package com.thiago.minhasfinancas.model.repository;
 import com.thiago.minhasfinancas.model.entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-<<<<<<< HEAD
-public interface UsuarioRepository  extends JpaRepository <Usuario, Long> { //Nessa parte estou passando a classe e o seu identificador
-
-=======
-import java.util.Optional;
 
 public interface UsuarioRepository  extends JpaRepository <Usuario, Long> { //Nessa parte estou passando a classe e o seu identificador
 
@@ -17,7 +12,7 @@ public interface UsuarioRepository  extends JpaRepository <Usuario, Long> { //Ne
 
     boolean existsByEmail(String email); //Métod similar ao query metodo comentado acima
 
->>>>>>> d1aefe5 (Criado os pacotes, service e suas classes)
+
 
 
 }
