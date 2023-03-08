@@ -2,53 +2,55 @@ package com.thiago.minhasfinancas.model.entity;
 
 
 import com.thiago.minhasfinancas.model.enums.StatusLancamento;
-import com.thiago.minhasfinancas.model.enums.Tipo;
+import com.thiago.minhasfinancas.model.enums.TipoLancamento;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
 @Entity
 @Table(name = "lancamento", schema = "financas")
 @Builder
-@Data// Notação que abrande Getters e setters, toString e hashCode
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Lancamento {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //Criando gerador automatico de id, como é id será como GenerationType.IDENTITY
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
-
-    @Column(name = "descricao")
-    private String descricao;
 
     @Column(name = "mes")
     private Integer mes;
 
     @Column(name = "ano")
-    private  Integer ano;
+    private Integer ano;
 
-    @ManyToOne //Ness caso é muitos lançamentos para um usuário
-    @JoinColumn(name = "id_usuario") //JoinColumn é quando temos uma coluna de relacionamento
+    @ManyToOne
+    @JoinColumn(name = "id_usuario")
     private Usuario usuario;
 
     @Column(name = "valor")
     private BigDecimal valor;
 
     @Column(name = "data_cadastro")
-    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)//
-    private LocalDate dataCadastro;
+    @Convert(converter = Jsr310JpaConverters.LocalDateConverter.class)
+    private LocalDate datacadastro;
 
     @Column(name = "tipo")
-    @Enumerated(value = EnumType.STRING) //Notação para gravar o tipo de dado, nesse caso será como String
-    private Tipo tipo;
+    @Enumerated(value = EnumType.STRING)
+    private TipoLancamento tipo;
 
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
     private StatusLancamento status;
+
 
 
 }
